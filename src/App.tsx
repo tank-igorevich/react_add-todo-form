@@ -9,7 +9,7 @@ export const App = () => {
     todosFromServer.map(todo => ({
       ...todo,
       user: usersFromServer.find(user => user.id === todo.userId),
-    }))
+    })),
   );
 
   const [title, setTitle] = useState('');
@@ -52,23 +52,21 @@ export const App = () => {
             data-cy="titleInput"
             value={title}
             placeholder="Enter title"
-            onChange={(e) => {
+            onChange={e => {
               setTitle(e.target.value);
               if (e.target.value.trim()) {
                 setHasTitleError(false);
               }
             }}
           />
-          {hasTitleError && (
-            <span className="error">Please enter a title</span>
-          )}
+          {hasTitleError && <span className="error">Please enter a title</span>}
         </div>
 
         <div className="field">
           <select
             data-cy="userSelect"
             value={userId}
-            onChange={(e) => {
+            onChange={e => {
               setUserId(+e.target.value);
               if (+e.target.value !== 0) {
                 setHasUserError(false);
@@ -85,9 +83,7 @@ export const App = () => {
             ))}
           </select>
 
-          {hasUserError && (
-            <span className="error">Please choose a user</span>
-          )}
+          {hasUserError && <span className="error">Please choose a user</span>}
         </div>
 
         <button type="submit" data-cy="submitButton">
